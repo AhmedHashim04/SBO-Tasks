@@ -20,5 +20,5 @@ from app import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('add/', views.add_view, name='add'),
+    path('add/', views.notify_sending_view, name='add'),
 ]

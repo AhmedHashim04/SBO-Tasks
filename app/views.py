@@ -1,10 +1,9 @@
-from django.shortcuts import render
 from django.http import HttpResponse
 
 
-from .tasks import add
+from .tasks import notify_sending
 
-def add_view(request):
-    result = add.delay(5, 7)
+def notify_sending_view(request):
+    result = notify_sending.delay(5, 7)
     print(result.get())
     return HttpResponse(f'Result: {result.get()}')

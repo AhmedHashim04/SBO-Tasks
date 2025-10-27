@@ -14,4 +14,3 @@ venv.bak/
 media/
 staticfiles/
 celerybeat-schedule
-000*.py
