@@ -138,3 +138,15 @@ CELERY_TASK_TIME_LIMIT = 30 * 60
 #Instead of using a message broker, tasks will be executed locally by blocking until the task returns
 CELERY_TASK_ALWAYS_EAGER = True         #for debugging purpose
 CELERY_TASK_EAGER_PROPAGATES = True     #for debugging purpose
+
+
+from datetime import timedelta
+
+CELERY_BEAT_SCHEDULE = {
+    'send-summary-every-day': {
+        'task': 'users.tasks.daily_summary',
+        'schedule': timedelta(days=1),
+    },
+}
+
+# celery -A project beat -l info
