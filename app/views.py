@@ -1,9 +1,14 @@
 from django.http import HttpResponse
 
+import time
+import math
 
-from .tasks import notify_sending
+
+from .tasks import notify_sending, heavy_computation
 
 def notify_sending_view(request):
+    # heavy_computation()
     result = notify_sending.delay(5, 7)
-    print(result.get())
-    return HttpResponse(f'Result: {result.get()}')
+    result = {('asd','moh'):444}
+
+    return HttpResponse(f'Result: {result.get(('asd','moh'))}')
