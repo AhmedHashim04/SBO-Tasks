@@ -17,8 +17,38 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from app import views
+from app.views import (
+    ProjectViewSet,
+    TaskViewSet,
+    BulkCreateTasksView,
+    BulkUpdateTasksView,
+    BulkDeleteTasksView,
+    notify_sending_view,
+)
+from rest_framework.routers import DefaultRouter
+
+router = DefaultRouter()
+router.register('projects', ProjectViewSet)
+router.register('tasks', TaskViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('add/', views.notify_sending_view, name='add'),
+    path('add/', notify_sending_view, name='add'), 
+    *router.urls,
+    path('tasks/bulk-create/', BulkCreateTasksView.as_view(), name='bulk-create-tasks'),
+    path('tasks/bulk-update/', BulkUpdateTasksView.as_view(), name='bulk-update-tasks'),
+    path('tasks/bulk-delete/', BulkDeleteTasksView.as_view(), name='bulk-delete-tasks'),
+
+]
+
+
+router = DefaultRouter()
+router.register('projects', ProjectViewSet)
+router.register('tasks', TaskViewSet)
+
+urlpatterns = [
+    *router.urls,
+    path('tasks/bulk-create/', BulkCreateTasksView.as_view()),
+    path('tasks/bulk-update/', BulkUpdateTasksView.as_view()),
+    path('tasks/bulk-delete/', BulkDeleteTasksView.as_view()),
 ]
