@@ -78,9 +78,11 @@ Here are some example `curl` commands for interacting with the project endpoints
 Follow these steps to set up the project:
 
 ```bash
-git clone https://github.com/AhmedHashim04/SBO-Tasks.git
-cd SBO-Tasks/src
-python -m venv venv
+mkdir SBO-Tasks
+cd SBO-Tasks
+git clone https://github.com/AhmedHashim04/SBO-Tasks.git src
+cd src
+python -m venv .
 source venv/bin/activate
 pip install -r requirements.txt
 python manage.py migrate
