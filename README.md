@@ -80,18 +80,26 @@ Follow these steps to set up the project:
 ```bash
 mkdir SBO-Tasks
 cd SBO-Tasks
+python3 -m venv .
 git clone https://github.com/AhmedHashim04/SBO-Tasks.git src
 cd src
-python -m venv .
-source venv/bin/activate
+source ../bin/activate
 pip install -r requirements.txt
 python manage.py migrate
 python manage.py createsuperuser
 python manage.py runserver
-
-celery -A project worker -l info
-celery -A project beat -l info
-celery -A project flower --port=5555
 ```
 
+and in another bash run env and write : 
+```bash
+celery -A project worker -l info
+```
+and in another bash run env and write : 
+```bash
+celery -A project beat -l info
+```
+and in another bash run env and write : 
+```bash
+celery -A project flower --port=5555
+```
 ![Celery Dashboard](image.png)
